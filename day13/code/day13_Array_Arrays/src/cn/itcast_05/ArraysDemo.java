@@ -23,13 +23,13 @@ public class ArraysDemo {
 		// public static String toString(int[] a):把数组转成字符串
 		System.out.println(Arrays.toString(arr)); // [24, 13, 69, 80, 57]
 
-		// public static void sort(int[] a):排序(快速排序)
-		Arrays.sort(arr);
-		System.out.println(Arrays.toString(arr)); // [13, 24, 57, 69, 80]
-
-		// public static int binarySearch(int[] a,int key):二分查找
-		// [13, 24, 57, 69, 80]
-		System.out.println(Arrays.binarySearch(arr, 24));
-		System.out.println(Arrays.binarySearch(arr, 244)); // ??? -6
+//		// public static void sort(int[] a):排序(快速排序)
+//		Arrays.sort(arr);
+//		System.out.println(Arrays.toString(arr)); // [13, 24, 57, 69, 80]
+//
+//		// public static int binarySearch(int[] a,int key):二分查找
+//		// [13, 24, 57, 69, 80]
+//		System.out.println(Arrays.binarySearch(arr, 24));
+//		System.out.println(Arrays.binarySearch(arr, 244)); // ??? -6
 	}
 }

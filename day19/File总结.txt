@@ -6,28 +6,31 @@
 		C:File file = new File("d:\\demo");
 		  File file2 = new File(file,"a.txt");
 	(3)File的成员方法(自己补齐方法和中文意思)
+		File file =new File("sss");//如果没有声明盘符，则在项目目录下
 		A:创建功能
-			CreateNewFile()
-			mkdir()
-			mkdirs()
+			file.createNewFile()创建新文件
+			file.mkdir()创建文件夹
+			file.mkdirs()创建多级文件
 		B:删除功能
-			delete()
+			file.delete()//可以删除文件夹，但文件夹内不包含文件或者文件夹
 		C:重命名功能
-			renameTo()
+			file.renameTo(file2)//改名
+			file.setReadable(true)//设置可读
+			file.setWriteable(true)//设置可写
 		D:判断功能
 			isDirectory()
 			isFile()
 			exists()
-			isHidden()
+			isHidden()//判断是否隐藏
 			canWrite()
 			canRead()
 		E:基本获取功能
-			get三个
-			lastModifiedTime
-			length
+			get三个：getAbsolutepath()//绝对路径，getPath//获取构造方法中传入的路径
+			lastModifiedTime//获取最后的修改时间
+			length//获取文件字节个数
 		F:高级获取功能
 			String[] filename = file.list()
-			File[] fileArray = file.listFiles()
-		G:文件名称过滤器
+			File[] fileArray =file.listFiles()
+		G:文件名称过滤器 String[] arr = dir.list(new FilenameFilter(){}) 
 	(4)案例：
 		输出指定目录下指定后缀名结尾的文件名称

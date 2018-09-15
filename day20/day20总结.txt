@@ -21,11 +21,11 @@
 		C:针对流操作的对象都在io包中
 	(2)IO流的分类
 		A:流向
-			输入流
-			输出流
+			输入流 InputStream//字节输入流，Reader 字符流输入
+			输出流 OutputStream//字节输出流 Writer  字符流
 		B:数据类型
-			字节流
-			字符流
+			字节流:可以操纵所以数据，任何数据都是以字节的形式存在的
+			字符流:字符流只能操作纯子符数据，比较方便。
 		
 		a:如果没有明确指定，默认按照数据类型分。
 		b:通过windows记事本打开并能够读懂的文件，就用字符流。
@@ -38,11 +38,11 @@
 			C:释放资源
 
 		代码体现：
-			FileOutputStream fos = new FileOutputStream("fos.txt");
-
+			FileOutputStream fos = new FileOutputStream("fos.txt");//如果没有这个文件会创建，如果有就先把文件清空。
+			FileOutputStream fos = new FileOutputStream("fos.txt",true);//可追加
 			fos.write("helloworld".getBytes());
 
-			fos.close();
+			fos.close();//写int类型时会自动去除前面的24位
 
 		几个小问题：
 			A:创建字节输出流对象做了几件事情?
@@ -59,20 +59,19 @@
 		代码体现：
 			FileInputStream fis = new FileInputStream("fis.txt");
 
-			//方式1:一次读取一个字节
+			//方式1:一次读取一个字节，效率低
 			int by = 0;
 			while((by=fis.read())!=-1) {
 				System.out.print((char)by);
 			}
 			
 
-			//方法2:一次读取一个字节数组
-			byte[] bys = new byte[1024];
-			int len = 0;
-			while((len=fis.read(bys))!=-1) {
-				System.out.print(new String(bys,0,len));
-			}
-
+			//方法2:一次读取一个字节数组，容易造成内存溢出
+			fis.avilable();//文件字节大小
+			byte[] bys = new byte[fis.available()];	
+			fis.read(bys);   //文件中的内容读取到内存中
+			fos.write(bys);
+			fos.close();
 			fis.close();
 	(5)案例：
 		复制文件

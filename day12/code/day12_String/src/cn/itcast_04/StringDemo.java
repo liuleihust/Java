@@ -33,7 +33,7 @@ public class StringDemo {
 		System.out.println("indexOf():" + s.indexOf('l', 4));
 
 		// 自己学习
-		// int indexOf(String str):返回指定字符串在字符串中第一次出现的位置
+		// int indexOf(String str):返回指定字符串在字符串中第一次出现的位置  
 		// int indexOf(String str,int fromIndex):返回指定字符串从指定位置开始在字符串中第一次出现的位置
 		System.out.println("----------------------");
 

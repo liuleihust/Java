@@ -15,21 +15,21 @@ import java.util.Scanner;
  */
 public class StringTest {
 	public static void main(String[] args) {
-		// 键盘录入一个字符串
-		Scanner sc = new Scanner(System.in);
-		System.out.println("请输入一个字符串：");
-		String s = sc.nextLine();
-
-		// 截取首字母得到s1
-		String s1 = s.substring(0, 1);
-		// 截取除首字母以外的其他字符串得到s2
-		String s2 = s.substring(1);
-		// s1转大写+s2转小写
-		String result = s1.toUpperCase().concat(s2.toLowerCase());
-		System.out.println(result);
-
-		// String result = s.substring(0, 1).toUpperCase()
-		// .concat(s.substring(1).toLowerCase());
-		// System.out.println(result);
+//		// 键盘录入一个字符串
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("请输入一个字符串：");
+//		String s = sc.nextLine();
+//
+//		// 截取首字母得到s1
+//		String s1 = s.substring(0, 1);
+//		// 截取除首字母以外的其他字符串得到s2
+//		String s2 = s.substring(1);
+//		// s1转大写+s2转小写
+//		String result = s1.toUpperCase().concat(s2.toLowerCase());
+//		System.out.println(result);
+String s ="woSISODODODO";
+		 String result = s.substring(0, 1).toUpperCase()
+		 +s.substring(1).toLowerCase();
+		 System.out.println(result);
 	}
 }

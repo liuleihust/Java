@@ -20,7 +20,7 @@ public class StringBufferDemo2 {
 
 		// public StringBuffer delete(int start,int end):删除从指定位置开始到指定位置结束的内容
 		// buffer.delete(5, 10);
-		buffer.delete(0, buffer.length());
+		buffer.delete(0, buffer.length());//清空缓冲区
 
 		System.out.println("buffer:" + buffer);
 	}

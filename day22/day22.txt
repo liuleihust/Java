@@ -8,29 +8,38 @@
 
 3：内存操作流(数组操作流)
 	数据不做永久储存
-	ByteArrayInputStream/ByteArrayOutputStream:字节数组操作流
+	字节数组操作流:
+	ByteArrayInputStream:
+	ByteArrayOutputStream:在内存中创建了一个可以增长的内存数组，数据可以用 toByteArray()和 toString()
 	CharArrayReader/CharArrayWriter:字符数组操作流
 	StringReader/StringWriter:字符串操作流
 
 4：打印流
-	PrintWriter/PrintStream：
+	PrintWriter（字符流）/PrintStream（字节流）：
 	特点：只能操作目的地，不能操作数据源
 		可以操作任意类型的数据
-		如果启用了自动刷新，可以自动刷新：开启自动刷新，与println配合使用，一句顶过			去三句
+		如果启用了自动刷新，可以自动刷新：开启自动刷新，与println配合使用，一句顶过			去三句//自动输出功能只针对的是println功能
 		可以直接操作文件：
 			构造方法可以同时接收File和String类型的都可以直接操作文件
+	PrintStream ps =  System.out;//打印字节流
+	ps.println(97);//输出字符串
+	ps.write(97);//输出字符a
 
 	printf的使用：String format   %  格式化输出
 
 5：标准输入输出流
-	System.in:BufferedReader br = new BufferedReader(new InputStream(System.in));
+	
+
+	System.in:BufferedReader br = new BufferedReader(new InputStream(System.in));//输入流只有一个，关闭后不能开启
 	System.out:BufferedWriter bw = new BufferedWriter(new OutputStream(System.out));
+	System.setIn(new FileInputStream(".txt"));//改变默认输入流
+	System.setOut(new PrintStream("n.txt));//改变默认输出流
 	后面参数不具有具体文件路径无需释放资源
 
 
 6：随机存取
 	RandomAccessFile:
-		seek()方法
+		seek()方法//在指定位置设置指针。
 
 7：合并流
 	SequenceInputStream:
@@ -39,6 +48,7 @@
 		接收多个InputStream参数：
 
 8：序列化流
+	ObjectOutputStream
 	序列化：为了让对象数据永久储存或者实现在网络中传输而生成的二进制流
 	反序列化：将序列化对象还原
 	如何序列化：实现Seriable接口
@@ -46,7 +56,12 @@
 	解决小问题：只要有一点小小的变动，会重新产生一个序列化id值
 		指定一个固定的SerialVersionUID
 
-9:Properties集合：
+9:Properties集合：Properties类表示了一个持久的属性集； 
+Properties prop = new Properties();
+Prop.put("abc",123);属性列表中每个键及其对应都是一个字符串
+prop.setProperty(" "," ");
+Properties 可保存在流中或从流中读出，
+
 
 10：nio
 	

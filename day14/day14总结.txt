@@ -25,17 +25,17 @@
 	(1)用于数学运算的类，还包括一些三角函数。
 	(2)常见功能：
 		public static int abs(int a)
-		public static double ceil(double a)
-		public static double floor(double a)
+		public static double ceil(double a) //向上寻找
+		public static double floor(double a)//向下寻找
 		public static int max(int a,int b) min自学
-		public static double pow(double a,double b)
-		public static double random()
-		public static int round(float a) 参数为double的自学
-		public static double sqrt(double a)
+		public static double pow(double a,double b) //求 以A为底数，以B为指数的结果
+		public static double random()//生成 0.0 到1.0 之间
+		public static int round(float a) 参数为double的自学//四舍五入
+		public static double sqrt(double a)//开平方
 	(3)案例：(掌握)
 		猜数字小游戏
 
-3：Random(理解)
+3：Random(理解)//伪随机数
 	(1)Random是用于产生随机数的类
 	(2)构造方法：
 		public Random()
@@ -53,13 +53,13 @@
 4：System(理解)
 	(1)提供了一些有用的类字段和方法
 	(2)成员方法
-		public static void gc()
-		public static void exit(int status)
-		public static long currentTimeMillis()
-		public static void arraycopy(Object src,int srcPos,Object dest,int destPos,int length)
+		public static void gc() //运行垃圾回收器
+		public static void exit(int status) //退出JAVA 虚拟机，0 表示正常退出，其他表示异常退出
+		public static long currentTimeMillis() //与1970.1.1之间的毫秒时间差
+		public static void arraycopy(Object src,int srcPos,Object dest,int destPos,int length) // 拷贝数组
 
 5：BigInteger/BigDecimal(理解)
-	(1)BigInteger
+	(1)BigInteger//不可变的任意整数
 		A:构造方法
 			public BigInteger(String val)
 		B:成员方法
@@ -82,23 +82,27 @@
 6：Date/DateFormat/Calendar(掌握)
 	(1)Date
 		A:构造方法
-			public Date()
-			public Date(long date)
+			public Date()// 当前时间
+			public Date(long date)//毫秒 加1970.1.1
 		B:成员方法
-			public long getTime()
+			public long getTime() //通过时间对象获取毫秒值
 			public void setTime(long time)
 	(2)SimpleDateFormat
 		A:构造方法
 			public SimpleDateFormat(String pattern)
 			常见模式：yyyy-MM--dd HH:mm:ss
+			SimpleDateFormat sdf = new SimpleDateFormat（“yyyy-MM--dd HH:mm:ss”）
+sdf .format(Date a);
 		B:成员方法
 			public final String format(Date date)
-			public Date parse(String source)
+			public Date parse(String source)// 时间字符串转化为日期对象
 	(3)Calendar
 		A:如何得到对象呢?
 			public static Calendar getInstance()
+			//Calendar c =Calendar.getInstance();
+
 		B:成员方法
-			public int get(int field)
+			public int get(int field)//c.get(Calendar.YEAR)
 			public void add(int field,int amount)
 			public final void set(int year,int month,int date)
 	(4)案例：

@@ -99,7 +99,7 @@
 		把字符串中的字符进行排序
 
 4：基本类型包装类(掌握)
-	(1)为了让我们对基本类型进行更多的操作，java针对每种基本类型提供了对应的包装类类型。
+	(1)为了让我们对基本类型进行更多的操作，java针对每种基本类型提供了对应的包装类类型。如10进制改为16进制 
 	(2)分别是哪些呢?
 		byte		Byte
 		short		Short
@@ -110,18 +110,23 @@
 		char		Character
 		boolean		Boolean
 	特殊：  void		Void
-	(3)Integer
+	(3)Integer 
+		Intege.MAX_VALUE //最大值
+		Intege.MIN_VALUE
 		A:构造方法
+
 			a:Integer i = new Integer(100);
-			b:Integer i = new Integer("100");
+			b:Integer i = new Integer("100");//数字字符串
 		B:成员方法(自己补齐方法和意思)
 			a:把字符串转成int类型
-				String-int:Integer.parseInt()
-				int-String:String.valueOf()
-					   Integer.toString()
+				i+"";//推荐用 数字转化为字符串
+				String-int:Integer.parseInt()//字符串转成Int,基本数字类型有八种，其中7中都有parseXxx  来将字符串转化为基本数字类型，character 没有，通过toCharArray()就可以了，
+				int-String:String.valueOf()//数字转化为字符串
+					   Integer.toString()//数字转化为字符串
 		C:JDK5的新特性
+
 			自动装箱：
-				int -- Integer		//Integer.valueOf()
+				int -- Integer		//Integer.valueOf() 如果在byte范围内，自动装箱就不会创建新对象
 			自动拆箱：
 				Integer -- int		//Integer.intValue()
 
@@ -129,6 +134,8 @@
 				Integer i = 100;
 				i+=200;
 				System.out.println(i);
+				Interger i3= null;
+				int a =i3 +100；//false  i3 是空对象，无法调用方法
 		D:byte缓存池面试题
 			byte,short,char--->小于127，否则报-6的错误(查看JDK)
 	(4)Character

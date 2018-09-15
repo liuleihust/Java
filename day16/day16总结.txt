@@ -48,9 +48,9 @@
 		C:存储自定义对象并遍历
 	(5)LinkedList
 		A:特有功能(了解)
-			a:addFirst(),addLast()
+			a:addFirst(),addLast()//头添加 尾添加
 			b:removeFirst(),removeLast()
-			c:getFirst(),getLast()
+			c:getFirst(),getLast()//获取头 获取尾 
 		B:存储字符串并遍历
 		C:存储自定义对象并遍历
 	(6)案例：
@@ -75,23 +75,26 @@
 		C:泛型方法
 		D:泛型接口
 		E:泛型高级
-	(6)案例：
+	(6)案例： 
 		把前面的集合案例用泛型改进。
 
 5:JDK5新特性(掌握)
 	(1)增强for(掌握)
 		A:格式
-			for(元素的数据类型 变量名 : 数组或者Collection集合对象) {
-				使用变量名即可
+			for(元素的数据类型 变量名 : 数组或者Collection集合对象) {//底层用迭代器实现
+				使用变量名即可  for（int i ：arr）
 			}
 		B:好处
 			简化了数组或者集合的遍历
 		C:注意事项
 			增强for的目标不能为null
+	三种迭代删除：1)for 循环，删除数组集合，后面会自动前进。
+		   2）迭代循环：不能用集合的删除，会出现并发异常，需使用迭代器的删除或添加
+		   3）增强for循环不能删除，只能遍历
 	(2)静态导入(了解)
 		A:格式
 			import static xxx.yyy.zzz.类名.方法名;
-			导入到了方法的级别
+			导入到了方法的级别 // 不用加静态类名
 		B:注意事项
 			a:方法必须是静态的
 			b:如果有同名的方法，将来使用的时候还要加前缀，意义不大，所以一般不用。
@@ -102,3 +105,8 @@
 		C:注意实现
 			a:这个变量其实是数组，它会自动把多个元素组装成一个数组
 			b:如果一个方法有多个形式参数，可变参数一定放最后
+	集合转数组
+	String[] strings = list.toArray(new String[list.size()]);
+	数组转集合 //不能增加和减少元素，但能使用其他集合的方法
+	List list = java.util.Arrays.asList(s);
+	集合嵌套 ： ArrayList<ArrayList<Person>> list = new ArrayList<>();

@@ -1,8 +1,16 @@
 1:字节缓冲流(掌握)
 	(1)为了提高效率，java就提供了字节缓冲区流。
-	(2)字节缓冲区流
-		BufferedInputStream
-		BufferedOutputStream
+	(2)字节缓冲区流//降低硬盘的读取次数，提高效率
+		BufferedInputStream//一次性从文件中读取8192个字节到内存缓冲区中，程序再次读取的时候就不用再找文件了，直接从缓冲区读取。
+		BufferedOutputStream//程序向流中写字节的时候，不在直接写到文件中，先写到缓冲区中，知道缓冲区写满，再一次性写到文件中。
+字符串写出要.getBytes()
+	flush:刷新缓冲区，刷新完后还能继续读写，
+	close:刷新，不能写了。
+	异常处理：
+	try(FileInputStream fis =new FileInputStream("xxx.txt");
+	FileOutputStream fos = new FileOutputStream("yyy.txt");){
+	int b =fis.read();while((b=fis.read())!=-1){fos.write(b)}
+	}//大括号执行完后就会对小括号里的内容进行关闭
 	(3)复制视频文件
 		A:基本字节流一次读写一个字节
 		B:基本字节流一次读写一个字节数组
@@ -13,11 +21,12 @@
 		B:处理流 高级流
 		
 2:转换流(理解)
+	字符流读取字符，就要先读取到字节数据，然后转换为字符，如果要写出字符，就要把字符转字节再写出。
 	(1)因为字节流操作文本文件不是特别的方便，所以，java就提供了转换流。
 	   用来让我们操作文本文件数据更方便一些
 	(2)转换流本身是一个字符流
 		字符流 = 字节流 + 编码表
-	(3)编码表
+	(3)编码表//中文编码 第一个字节是负数
 		字符和对应数据组成的一张表
 
 		常见编码表：
@@ -36,17 +45,17 @@
 3:字符流(掌握)
 	(1)字符流体系
 		Reader
-			|--InputStreamReader
+			|--InputStreamReader//字节转为字符
 				|--FileReader
 			|--BufferedReader
-		Writer
+		Writer//具有2k的缓冲区，没有关流的话内容就会在缓冲区中，关流可以刷新缓冲区；
 			|--OutputStreamWriter
 				|--FileWriter
 			|--BufferedWriter
 	(2)字符流操作案例
 		A:基本字符流一次读写一个字符
 		B:基本字符流一次读写一个字符数组
-		C:高效字符流一次读写一个字符
+		C:高效字符流一次读写一个字符buffer
 		D:高效字符流一次读写一个字符数组
 		E:高效字符流一次读写一个字符串
 
@@ -62,12 +71,12 @@
 		|--字符流
 			|--输入流 Reader
 				|--FileReader
-				|--BufferedReader
+				|--BufferedReader//具有 readline()和newine()方法。newline()写出回车换行符(跨平台的方法，\r\n是Windows系统,\n是linux，\r是Mac系统)，readline（）读取一行
 			|--输出流 Writer
 				|--FileWriter
 				|--BufferedWriter
 
-	复制文本文件：
+	复制文本文件：//不可以拷贝非纯文本的文件，因为在读的时候会将字节转换为字符，在转换过程中，可能找不到对应的字符，就会用？代替，写的时候就会将字符转换成字节写出去，如果是？直接写出，这样写出之后的文件就乱了，看不了了。
 		9种方案。
 		字节流：4种
 		字符流：5种
@@ -77,3 +86,26 @@
 		4种方案。
 
 	如果你不知道，用字节流
+		
+	装饰器：
+	1.获取被装饰类的引用；
+	2.在构造方法中传入被装饰类的对象；
+	3.对原有的功能进行升级；
+	好处：耦合性不强，被装饰的类的与装饰的类变化无关；
+	
+
+	读取不同编码的文件：//如果不处理，会使用默认编码表处理
+	1.InputStreamReader 字节流向字符，
+	构造方法：
+			InputStreamReader(InputStream in, String charsetName)；//创建一个inputstreamreader使用指定的字符集。
+	构造方法不能用递归调用
+	
+	SequenceInputStream:
+	序列流可以把多个字节输入流整合成一个，从序列流中读取数据时，将从被整合的第一个流开始读.关闭这个流就可以关闭关联的流。
+	构造方法：
+	SequenceInputStream(Enumeration<? extends InputStream> e)	
+	Vector<FileInputStream> en = new Vector<>();
+	en.add(new FileInputStream(" ");
+	SequenceInputStream(en.elements())
+	
+	

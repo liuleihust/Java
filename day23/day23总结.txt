@@ -10,11 +10,17 @@
 		随机性原理：
 			因为多个线程不断去抢CPU的资源，CPU就在这多个线程间进行快速的切换，造成了随机性。
 	(3)并行和并发
-		并行：逻辑上同时，同一个时间内
-		并发：物理上同时，同一个时间点
+		并行：在多台处理器上同时处理多个任务；
+		并发：多台处理器同时处理多个任务；
 	(4)多线程的实现方案(自己补齐实现步骤和代码)
-		A:继承Thread类
-		B:实现Runnable接口
+		A:继承Thread类,重写类Thread的run方法,将要执行的代码写作run方法中,调用start方法。
+		B:实现Runnable接口，重写run(）方法，创建Thread类，Thread t =new Thread(mr);
+	查看源码的区别：
+	a.继承Thread：由于子类重写了Thread类的run方法，当调用start()时，直接找子类的run()方法。
+	b. 实现Runnable接口,构造函数传给成员变量，调用start时，会判断成员变量Runnable是否为空，不空的时候运行run()。
+	匿名内部类实现线程：//匿名内部类在使用方法中的局部变量时，变量要用final修饰
+	1.new Thread(){public void run(){for(int I=0;i<1000;i++){}}.start();
+	2.new Thread(new Runnable{public void run(){}}).start（）;
 	(5)常见的几个小问题
 		A:为什么要重写run()方法
 		B:启动线程使用的是哪个方法
@@ -28,13 +34,14 @@
 			B:抢占式调度
 			java采用第二种方案。
 		获取和设置线程的优先级。
+			t.setPriority(int x);
 			默认优先级是5
 			优先级范围是1-10
 	(7)线程的控制
-		A:线程休眠
-		B:线程加入
-		C:线程礼让
-		D:守护线程
+		A:线程休眠Thread.sleep();
+		B:线程加入t.join（）//插队执行
+		C:线程礼让Thread.yield();
+		D:守护线程t.setDaemon(true)//当别的线程关闭此线程关闭
 		E:中断线程
 	(8)生命周期图(看懂,最好能够自己画)
 	(9)通过多线程模拟电影院卖票
@@ -49,16 +56,17 @@
 		A:多线程环境
 		B:有共享数据
 		C:多条语句操作共享数据
-	(12)解决方案：
+	(12)解决方案：synchronized 修饰方法，该方法内所有代码都是同步的
 		A:同步代码块
 			格式：
 				synchronized(对象) {
 					需要被同步的代码
 				}
 
-				对象可以是任意对象
+				对象可以是任意对象//需要用同一个对象
 		B:同步方法
 			非静态	对象是this
 			静态	对象是当前类的字节码文件对象
 	(13)查看以前学习的几个类的源码
 		StringBuffer,Vector,Hashtable
+	vector 是线程安全的，Arraylist 是线程不安全的，StringBuffer 是线程安全的，StringBuilder是线程不安全的。Hashtable是线程安全的，HashtMap是线程不安全的

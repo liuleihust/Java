@@ -1,7 +1,7 @@
 package cn.itcast_02;
 
 /*
- * public StringBuffer replace(int start,int end,String str):用给定的字符串替换从指定位置开始到指定位置结束的数据
+ * 用给定的字符串替换从指定位置开始到指定位置结束的数据public StringBuffer replace(int start,int end,String str):
  */
 public class StringBufferDemo3 {
 	public static void main(String[] args) {
