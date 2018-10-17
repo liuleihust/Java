@@ -1,7 +1,8 @@
 1：多线程(理解)
 	(1)JDK5的Lock锁
-		A:lock()
+		A:lock()//ReentrantLock类
 		B:unlock()
+	创造监视器condition 
 	(2)死锁代码
 		代码要看一遍。
 	(3)线程间的通信问题
@@ -10,8 +11,11 @@
 		C:等待唤醒机制的代码
 		D:通过同步方法改进版的代码
 	(4)线程组
-		ThreadGroup
-	(5)线程池
+		ThreadGroup//默认主线程
+		ThreadGroup np = new ThreadGroup("创建新的线程组")；
+		Thread t1 = new Thread(np,mr,"")
+		创建新的线程组，然后把新的线程组名字与runnable接口放在一起创建新的线程，可以对线程组一起操作
+	(5)线程池//程序启动一个线程的成本比较高，因为它涉及到要与操作系统进行交互，线程池可以提高性能
 		...
 		Executors
 		方法：future<> newFixedThreadPool()
@@ -33,9 +37,9 @@
 2：单例设计模式(理解)
 	(1)保证类在内存中只有一个对象
 	(2)如何实现的?
-		A:构造私有
-		B:自己提供对象
-		C:提供公共访问方式
+		A:构造私有 //其他类不能访问这个构造方法 private sing(){}		
+		B:自己提供对象//Public static sing  s= new sing(); 
+		C:提供公共访问方式//Public static Sing getInstance(){}
 	(3)代码实现：
 		A:饿汉式
 			public class Student {
@@ -47,7 +51,7 @@
 					return s;
 				}
 			}
-		B:懒汉式
+		B:懒汉式//容易多线程，不是单例设计模式
 			public class Student {
 				private Student(){}
 
@@ -62,12 +66,12 @@
 			}
 	(4)面试和开发
 		A:面试
-			懒汉式
-
+			懒汉式//时间换空间
+			多线程时可能会创建多个对象
 			线程安全问题 必须要synchronized关键字
 			延迟加载思想
 		B:开发
-			饿汉式
+			饿汉式//空间换时间，先创建对象
 	(5)Runtime
 		是单例模式饿汉式实现。
 		public class Runtime{
@@ -77,3 +81,4 @@
 				return r;
 			}
 		}
+		多线程通信的问题，sleep不释放锁，wait释放锁
